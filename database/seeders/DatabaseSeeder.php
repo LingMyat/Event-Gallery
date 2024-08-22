@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this
             ->call([
                 DemoAdminSeeder::class,
-                DemoMemberSeeder::class
+                DemoMemberSeeder::class,
+                DemoEventSeeder::class
             ]);
     }
 }

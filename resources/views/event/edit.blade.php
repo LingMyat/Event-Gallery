@@ -8,8 +8,12 @@
                 'url' => route('events.index'),
             ],
             [
+                'label' => Str::limit($event->name, 15, ' ...'),
+                'url' => route('events.show',$event),
+            ],
+            [
                 'label' => 'Edit',
-                'url' => route('events.edit'),
+                'url' => route('events.edit',$event),
             ],
         ]" />
 
@@ -18,8 +22,9 @@
                 Edit Event
             </h2>
 
-            <form class="mt-8 space-y-6" method="POST" action="{{route('events.store')}}">
+            <form class="mt-8 space-y-6" method="POST" action="{{route('events.update', $event)}}">
                 @csrf
+                @method('PUT')
 
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
@@ -67,13 +72,13 @@
                 </div>
 
                 <div class="flex gap-3">
-                    <a href="{{route('events.index')}}"
+                    <a href="{{route('events.show',$event)}}"
                         class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         Cancel
                     </a>
 
                     <button id="submit-btn" type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
                 </div>
             </form>
         </div>

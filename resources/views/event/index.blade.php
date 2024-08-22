@@ -10,11 +10,9 @@
         ]" />
 
         <div class="flex items-center lg:justify-between mb-3">
-            <div class="min-w-0 flex-1">
-                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                    Upcomings Events
-                </h2>
-            </div>
+            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                Upcomings Events
+            </h2>
 
             <span class="sm:ml-3">
                 <a href="{{route('events.create')}}"
@@ -33,18 +31,26 @@
             </span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             @foreach ($events as $event)
-                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
-                        <h5 class="mb-2 text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {{Str::limit($event->name, 40, ' ...')}}
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <a href="{{ route('events.show', $event) }}" class="p-5 relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+                    <svg class="w-6 h-6 dark:text-white absolute right-2 top-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 14v4.833A1.166 1.166 0 0 1 16.833 20H5.167A1.167 1.167 0 0 1 4 18.833V7.167A1.166 1.166 0 0 1 5.167 6h4.618m4.447-2H20v5.768m-7.889 2.121 7.778-7.778"/>
+                    </svg>
+
+                    <p class="font-normal mb-2 text-gray-700 dark:text-gray-300">
+                        {{ $event->date }} ({{ $event->format_time }})
+                    </p>
+
+                    <h5 class="mb-3 text-xl md:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        {{Str::limit($event->name, 40, ' ...')}}
+                    </h5>
+
+                    <p class="font-normal text-gray-700 dark:text-gray-300">
                         {{Str::limit($event->description, 90, ' ...')}}
                     </p>
-                </div>
+                </a>
             @endforeach
         </div>
     </div>

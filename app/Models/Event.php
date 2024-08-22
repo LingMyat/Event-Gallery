@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
@@ -22,8 +23,20 @@ class Event extends Model
         'location',
     ];
 
+    /**
+     * Get the time attribute in 12-hour format with AM/PM.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getFormatTimeAttribute($value)
+    {
+        return Carbon::parse($value)->format('h:i A');
+    }
+
     public function photos()
     {
         return $this->hasMany(Photo::class);
     }
+
 }

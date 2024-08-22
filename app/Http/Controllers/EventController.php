@@ -26,6 +26,13 @@ class EventController extends Controller
         return to_route('events.index')->with('success', 'Successfully created!');
     }
 
+    public function show(Event $event)
+    {
+        return view('event.show', [
+            'event' => $event
+        ]);
+    }
+
     public function edit(Event $event)
     {
         return view('event.edit',[
@@ -37,7 +44,7 @@ class EventController extends Controller
     {
         $event->update($request->all());
 
-        return to_route('events.index')->with('success', 'Successfully updated!');
+        return to_route('events.show', $event)->with('success', 'Successfully updated!');
     }
 
     public function destroy(Event $event)
