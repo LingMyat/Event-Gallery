@@ -5,11 +5,11 @@
         <x-bradcrumb :lists="[
             [
                 'label' => 'Events',
-                'url' => route('event.index'),
+                'url' => route('events.index'),
             ],
             [
                 'label' => 'Create',
-                'url' => route('event.create'),
+                'url' => route('events.create'),
             ],
         ]" />
 
@@ -18,7 +18,9 @@
                 Create Event
             </h2>
 
-            <form class="mt-8 space-y-6" action="#">
+            <form class="mt-8 space-y-6" method="POST" action="{{route('events.store')}}">
+                @csrf
+
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
                         Name</label>
@@ -67,15 +69,21 @@
                 </div>
 
                 <div class="flex gap-3">
-                    <a href="{{route('event.index')}}"
+                    <a href="{{route('events.index')}}"
                         class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                         Cancel
                     </a>
 
-                    <button type="button"
+                    <button id="submit-btn" type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
                 </div>
             </form>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {!! \Facades\App\JsValidation\JsValidation::script([
+        'request' => new App\Http\Requests\EventRequest()
+    ])!!}
 @endsection
