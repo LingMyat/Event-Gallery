@@ -31,7 +31,7 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'Invalid credentials',
                     'errors'  => [
-                        'email'  => 'Invalid credentials',
+                        'email'  => ['Invalid credentials'],
                     ]
                 ], 401);
             }
@@ -39,7 +39,8 @@ class AuthController extends Controller
             if(count(Auth::user()->tokens)) Auth::user()->tokens()->delete();
 
             return response()->json([
-                'token' => Auth::user()->createToken('event')->plainTextToken
+                'token' => Auth::user()->createToken('event')->plainTextToken,
+                'name'  => Auth::user()->name
             ], 200);
         }
 

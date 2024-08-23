@@ -20,11 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')
+Route::prefix('/events')
     ->group(function() {
-        Route::get('/events', [EventController::class, 'index']);
-        Route::get('/events/{event}', [EventController::class, 'show']);
-        Route::post('/events/{event}/photo-upload', [EventController::class, 'uploadPhoto']);
+        Route::get('/', [EventController::class, 'index']);
+        Route::get('/{event}', [EventController::class, 'show']);
+        Route::post('/{event}/photo-upload', [EventController::class, 'uploadPhoto']);
     });
 
 Route::post('register', [AuthController::class, 'register']);
