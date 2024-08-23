@@ -40,7 +40,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'token' => Auth::user()->createToken('event')->plainTextToken,
-                'name'  => Auth::user()->name
+                'name'  => Auth::user()->name,
+                'email' => Auth::user()->email,
             ], 200);
         }
 

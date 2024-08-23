@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('js-validation/style.min.css')}}">
-
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>

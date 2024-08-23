@@ -9,6 +9,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
