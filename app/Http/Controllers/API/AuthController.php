@@ -19,7 +19,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Register successfully',
-        ], 200);
+        ], 201);
     }
 
     public function login(AuthRequest $request)
@@ -57,8 +57,6 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json([
-            'message' => 'Logged out successfully'
-        ], 200);
+        return response()->json([], 204);
     }
 }

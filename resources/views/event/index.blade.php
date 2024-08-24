@@ -9,7 +9,7 @@
             ],
         ]" />
 
-        <div class="flex items-center lg:justify-between mb-3">
+        <div class="flex items-center justify-between mb-3">
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                 Upcomings Events
             </h2>

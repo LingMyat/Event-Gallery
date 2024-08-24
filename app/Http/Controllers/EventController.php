@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -29,7 +30,11 @@ class EventController extends Controller
     public function show(Event $event)
     {
         return view('event.show', [
-            'event' => $event
+            'event'  => $event,
+            'photos' => Photo::where([
+                'event_id' => $event->id,
+                'status'   => 'pending'
+            ])->with('user')->orderByDesc('created_at')->get()
         ]);
     }
 
@@ -52,5 +57,16 @@ class EventController extends Controller
         $event->delete();
 
         return to_route('events.index')->with('success', 'Successfully deleted!');
+    }
+
+    public function gallery(Event $event)
+    {
+        return view('event.gallery', [
+            'photos' => Photo::where([
+                            'event_id' => $event->id,
+                            'status'   => 'approved'
+                        ])->orderByDesc('created_at')->with('user')->get(),
+            'event'  => $event
+        ]);
     }
 }

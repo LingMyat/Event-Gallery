@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\PhotoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,19 @@ Route::prefix('/events')
     ->group(function() {
         Route::get('/', [EventController::class, 'index']);
         Route::get('/{event}', [EventController::class, 'show']);
-        Route::post('/{event}/photo-upload', [EventController::class, 'uploadPhoto']);
+        Route::get('/{event}/event-gallery', [EventController::class, 'eventGallery']);
+        Route::post('/{event}/photo-upload', [EventController::class, 'uploadPhoto'])->middleware('auth:sanctum');
+
+    });
+
+Route::middleware('auth:sanctum')
+    ->prefix('/photos')
+    ->group(function() {
+        Route::get('/{event}/my-photos', [PhotoController::class, 'myPhotos']);
+        Route::delete('/{photo}/destroy', [PhotoController::class, 'destroy']);
     });
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])
+    ->middleware('auth:sanctum');

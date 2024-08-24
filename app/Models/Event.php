@@ -10,11 +10,6 @@ class Event extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'description',
@@ -23,12 +18,6 @@ class Event extends Model
         'location',
     ];
 
-    /**
-     * Get the time attribute in 12-hour format with AM/PM.
-     *
-     * @param  string  $value
-     * @return string
-     */
     public function getFormatTimeAttribute($value)
     {
         return Carbon::parse($value)->format('h:i A');

@@ -14,13 +14,14 @@
 
     <link rel="stylesheet" href="{{asset('js-validation/style.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('css')
 </head>
 
 <body>
 
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
-        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
         <span class="sr-only">Open sidebar</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +44,10 @@
                     </a>
                 </li>
                 <li>
-                    <x-nav-item :url="'#'" label="Dashboard" :active="request()->is('dashboard*')">
+                    <x-nav-item
+                    label="Dashboard"
+                    :url="route('dashboard')"
+                    :active="request()->is('dashboard*')">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         <path
@@ -83,9 +87,6 @@
     </aside>
 
     <div class="p-4 sm:ml-64">
-        {{-- <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            testing
-        </div> --}}
         @yield('template')
     </div>
 

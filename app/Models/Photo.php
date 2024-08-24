@@ -16,6 +16,11 @@ class Photo extends Model
         'status',
     ];
 
+    public function getAssetPhotoUrlAttribute()
+    {
+        return asset('storage/' . $this->photo_url);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
