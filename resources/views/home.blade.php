@@ -187,6 +187,10 @@
             @if ($photos->count() == 0)
             <h3 class="text-xl font-medium mt-4">There is no photo submission.</h3>
             @endif
+
+            <div class="mt-4">
+                {{ $photos->appends(request()->query())->links() }}
+            </div>
         </div>
 
     </div>

@@ -34,7 +34,7 @@ class EventController extends Controller
             'photos' => Photo::where([
                 'event_id' => $event->id,
                 'status'   => 'pending'
-            ])->with('user')->orderByDesc('created_at')->get()
+            ])->with('user')->orderByDesc('created_at')->paginate(15)
         ]);
     }
 

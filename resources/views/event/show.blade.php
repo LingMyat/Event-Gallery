@@ -267,6 +267,10 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="mt-4">
+                {{ $photos->appends(request()->query())->links() }}
+            </div>
         </div>
     </div>
 @endsection
