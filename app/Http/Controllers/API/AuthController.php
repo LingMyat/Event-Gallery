@@ -36,7 +36,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            if(count(Auth::user()->tokens)) Auth::user()->tokens()->delete();
+            // if(count(Auth::user()->tokens)) Auth::user()->tokens()->delete();
 
             return response()->json([
                 'token' => Auth::user()->createToken('event')->plainTextToken,
