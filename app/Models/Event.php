@@ -18,9 +18,9 @@ class Event extends Model
         'location',
     ];
 
-    public function getFormatTimeAttribute($value)
+    public function getFormatTimeAttribute()
     {
-        return Carbon::parse($value)->format('h:i A');
+        return Carbon::parse($this->time)->format('h:i A');
     }
 
     public function photos()
