@@ -54,6 +54,11 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
+
+        if($event->photos->count()) {
+            $event->photos()->delete();
+        }
+
         $event->delete();
 
         return to_route('events.index')->with('success', 'Successfully deleted!');
